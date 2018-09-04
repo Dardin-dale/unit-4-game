@@ -65,7 +65,7 @@ $(document).ready(function () {
             character.data("counter", char.counter);
             character.html(
                 '<span>'+ char.name + '</span>' +
-                '<img src="'+ character.data("sprite") + '/>' +
+                '<img src='+ character.data("sprite") + '/>' +
                 '<span class="hbar">' + character.data("hp") + '</span>'
             );
         return character;
@@ -84,24 +84,42 @@ $(document).ready(function () {
     //Controls Dom functions and keeps track of characters in play
     var game = {
         chars: [char1, char2, char3, char4, char5, char6],
-        play: null,
-        opps: [],
+        player: null,
+        defender: null,
         //fills id with character list
-        charFill: function (id) {
+        charFill: function (id, cl = undefined, charId = undefined) {
             // populates character select creates character HTML with data to call later
             for (var i = 0; i < this.chars.length; i++) {
-                $(id).append(charEle(this.chars[i]));
+                $(id).append(charEle(this.chars[i], cl, charId));
             }
         },
         //sets player character and populates foes
         makePlayer: function (name) {
+            // select character and fills opponents
             $('#charSelect').empty();
             var ind = getIndex(this.chars, name);
-            var player = charEle(this.chars[ind], undefined, "player");
+            var play = charEle(this.chars[ind], undefined, "player");
             $('#charSelect').append('<h3>Player</h3>');
-            $('#charSelect').append(player);
+            $('#charSelect').append(play);
+            this.player = this.chars.splice(ind, 1);
+            // fills opponent div
+            $('#enemySelect').prepend('<h3 id="oppmsg">Select Your Opponent</h3>')
+            this.charFill('#foes', "foe", undefined);
         },
-        opponent: function () {
+        //move defender into position
+        opponent: function (name) {
+            // select character and fills opponents
+            var ind = getIndex(this.chars, name);
+            var play = charEle(this.chars[ind], undefined, "defender");
+            $('#defend').append('<h3>Defender</h3>');
+            $('#defend').append(play);
+            this.defender = this.chars.splice(ind, 1);
+            // Updates opponents
+            $('#oppmsg').text("Opponents on Standby");
+            $('#foes').empty();
+            this.charFill('#foes', "wait", undefined);
+        },
+        attack: function () {
 
         }
 
@@ -114,6 +132,13 @@ $(document).ready(function () {
     $('.character').on('click', function() {
         var el = $(this);
         game.makePlayer(el.data("name"));
+    });
+
+    // pick new opponent
+    $('#foes').on('click', 'div.foe', function () {
+        console.log('clicked!');
+        var el = $(this);
+        game.opponent(el.data("name"));
     });
 
 
