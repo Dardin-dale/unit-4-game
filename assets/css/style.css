@@ -1,0 +1,73 @@
+body {
+    max-width: 960px;
+    background: url('../images/brush.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: fantasy;
+    color: powderblue;
+}
+
+p {
+    clear: both;
+    color: powderblue;
+}
+
+.character, .foe, .wait {
+    display: inline-block;
+    margin: 10px;
+}
+
+.character span, .foe span, .wait span {
+    color: powderblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    text-align: center;
+    margin: 5px 1px;
+}
+
+.character img, .foe img, .wait img {
+    width: 100px;
+    height: 100px;
+}
+
+/* hbar not perfect yet*/
+.hbar {
+    position: relative;
+    max-width: 100%;
+    padding: 0px 3px;
+    
+}
+
+.hbar p {
+    text-align: center;
+}
+
+.btn {
+    margin: 10px;
+}
+
+#winner {
+    margin: 0 auto;
+}
+/*  looks gaudy
+.foe, .wait {
+    background-color: palevioletred;
+}
+
+#player {
+    background-color: goldenrod;
+}
+
+#defender {
+    background-color: crimson;
+}
+*/ 
