@@ -8,7 +8,7 @@ $(document).ready(function () {
         attack: 5,
         hp: 100,
         counter: 25,
-        sprite: "assets/images/stink.JPG"
+        sprite: "assets/images/stink.jpg"
 
     }
 
