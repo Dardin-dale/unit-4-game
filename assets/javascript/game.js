@@ -42,7 +42,7 @@ $(document).ready(function () {
     // good ol' bait
     var char5 = {
         name: "Scarab",
-        attack: 20,
+        attack: 19,
         hp: 100,
         counter: 15,
         sprite: "assets/images/scarab.jpg"   
